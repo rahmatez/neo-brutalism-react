@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://neo-brutalism-react-docs.vercel.app/sitemap.xml

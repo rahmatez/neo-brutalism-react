@@ -1,0 +1,282 @@
+/* styles.css - full theme + base reset */
+@import './theme.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--nb-background);
+  color: var(--nb-foreground);
+  font-family: var(--nb-font-sans);
+  font-weight: var(--nb-font-weight-normal);
+}
+
+/* Zero-specificity defaults: any consumer Tailwind utility on the element wins
+   without needing the `!` (important) suffix. Tokens are exposed for theming.
+   Wrapped in @layer base so Tailwind v4 utilities (in @layer utilities) win
+   over these unlayered defaults — without this, the cascade-layer rule
+   "unlayered author > layered author" makes the :where() rule beat any
+   utility regardless of specificity. */
+
+@layer base {
+  :where([data-nb-reset-margin]) {
+    margin: 0;
+  }
+
+  :where([data-slot="dialog-title"]) {
+    display: block;
+    padding: 1.5rem 1.5rem 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  :where([data-nb-title][data-underline])::after {
+    content: "";
+    display: block;
+    width: var(--nb-title-wave-width, min(9rem, 100%));
+    height: var(--nb-title-wave-height, 0.625rem);
+    margin-top: var(--nb-title-wave-gap, 0);
+    background-color: var(--nb-title-wave-color, #a78bfa);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 12' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6' fill='none' stroke='black' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")
+      center / 100% 100% no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 12' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6' fill='none' stroke='black' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")
+      center / 100% 100% no-repeat;
+  }
+
+  /* Built-in accent underline for nbDisplay / nbText (underline="bar" | "wave").
+     Drawn as an ::after so it stays out of the accessibility tree. Shape, size,
+     gap and color are all token-driven public API. */
+  :where([data-nb-display][data-underline], [data-nb-text][data-underline]) {
+    /* Column flex so the underline sits beneath the text and stays left-aligned,
+       regardless of any inherited text-align or shrink-to-fit width. Align to
+       start so percentage underline widths are based on the text box instead of
+       a stretched flex parent. */
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: flex-start;
+  }
+
+  :where([data-nb-display][data-underline="bar"], [data-nb-text][data-underline="bar"])::after {
+    content: "";
+    display: block;
+    width: var(--nb-underline-width, 7rem);
+    height: var(--nb-underline-height, 0.375rem);
+    margin-top: var(--nb-underline-gap, 0.75rem);
+    border-radius: var(--nb-underline-radius, 9999px);
+    background-color: var(--nb-underline-color, var(--nb-pink));
+  }
+
+  :where([data-nb-display][data-underline="wave"], [data-nb-text][data-underline="wave"])::after {
+    content: "";
+    display: block;
+    width: var(--nb-underline-width, min(18rem, 100%));
+    height: var(--nb-underline-height, 0.625rem);
+    margin-top: var(--nb-underline-gap, 0.5rem);
+    background-color: var(--nb-underline-color, var(--nb-pink));
+    -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 12' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6' fill='none' stroke='black' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")
+      center / 100% 100% no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 12' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6' fill='none' stroke='black' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")
+      center / 100% 100% no-repeat;
+  }
+
+  :where([data-slot="dialog-description"]) {
+    display: block;
+    padding: 0 1.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--nb-dialog-description-fg);
+  }
+
+  :where([data-slot="dialog-content"]) {
+    flex: 1 1 0%;
+    overflow-y: auto;
+    padding: 1rem 1.5rem;
+    border-top: 2px solid var(--nb-border);
+    border-bottom: 2px solid var(--nb-border);
+    background-color: var(--nb-dialog-content-bg);
+  }
+
+  :where([data-slot="dialog-actions"]) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    background-color: var(--nb-dialog-actions-bg);
+  }
+
+  :where(input[data-nb-input], textarea[data-nb-textarea]) {
+    background-color: var(--nb-input-bg, var(--nb-field-bg));
+  }
+
+  :where(input[data-nb-input]) {
+    height: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  :where(input[data-nb-input][data-size="sm"]) {
+    height: 2.25rem;
+    padding: 0 0.75rem;
+  }
+  :where(input[data-nb-input][data-size="lg"]) {
+    height: 2.75rem;
+    padding: 0 1rem;
+    font-size: 1rem;
+  }
+
+  :where(input[data-nb-input][type="file"]) {
+    padding-block: 0;
+    padding-inline-start: 0;
+    align-items: center;
+  }
+  :where(input[data-nb-input][type="file"])::file-selector-button {
+    font-family: inherit;
+    background-color: var(--nb-main);
+  }
+
+  :where([data-nb-input-prefix]:has(svg)) {
+    --nb-input-group-prefix-bg: #ffd24a;
+  }
+
+  :where(select[data-nb-select]) {
+    height: 3.5rem;
+    padding: 0.875rem 1.25rem;
+    font-family: var(--nb-font-mono, monospace);
+    font-size: 1rem;
+    font-weight: 700;
+    background-color: var(
+      --nb-select-bg,
+      var(--nb-input-bg, var(--nb-field-bg))
+    );
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.5rem 1.5rem;
+  }
+
+  :where(textarea[data-nb-textarea]) {
+    min-height: 5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  :where(textarea[data-nb-textarea][data-size="sm"]) {
+    min-height: 4rem;
+    padding: 0.375rem 0.75rem;
+  }
+  :where(textarea[data-nb-textarea][data-size="lg"]) {
+    min-height: 6rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+
+  :where(label[data-nb-label]) {
+    font-size: 0.875rem;
+  }
+}
+
+@layer components {
+  :where([data-nb-title]) {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: flex-start;
+    max-width: 100%;
+    font-size: var(--nb-title-font-size, 1.75rem);
+    font-weight: var(--nb-title-font-weight, 900);
+    line-height: var(--nb-title-line-height, 1.05);
+  }
+
+  :where(.nb-radius) {
+    border-radius: var(--nb-radius-token, var(--_nb-radius-default));
+  }
+
+  :where(.nb-tone) {
+    background-color: var(
+      --_nb-tone-bg-token,
+      var(--_nb-tone-bg-default)
+    );
+    color: var(--_nb-tone-fg-token, var(--_nb-tone-fg-default));
+    border-color: var(
+      --_nb-tone-border-color-token,
+      var(--_nb-tone-border-color-default)
+    );
+  }
+
+  :where(.nb-shadow) {
+    box-shadow: var(--nb-shadow-token, var(--_nb-shadow-default));
+  }
+
+  :where(.nb-padding) {
+    padding: var(--nb-padding-token, var(--_nb-padding-default));
+  }
+
+  :where(.nb-gap) {
+    gap: var(--_nb-gap-resolved, var(--_nb-gap-default));
+  }
+
+  :where(.nb-border-width) {
+    border-style: solid;
+    border-width: var(
+      --nb-border-width-token,
+      var(--_nb-border-width-default)
+    );
+  }
+
+  :where(.nb-radius [data-nb-dialog]) {
+    border-radius: var(--nb-radius-token, var(--_nb-radius-default));
+  }
+
+  :where(.nb-shadow [data-nb-dialog]) {
+    box-shadow: var(--nb-shadow-token, var(--_nb-shadow-default));
+  }
+
+  :where(.nb-border-width [data-nb-dialog]) {
+    border-width: var(
+      --nb-border-width-token,
+      var(--_nb-border-width-default)
+    );
+  }
+
+  [data-nb-drawer] dialog[data-nb-drawer-panel] {
+    margin: 0;
+    max-height: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  [data-nb-drawer][data-side='right'] dialog[data-nb-drawer-panel] {
+    margin-left: auto;
+  }
+
+  [data-nb-drawer][data-side='left'] dialog[data-nb-drawer-panel] {
+    margin-right: auto;
+  }
+}
+
+/* Focus visible utility class */
+.nb-focus-visible:focus-visible {
+  outline: var(--nb-focus-ring);
+  outline-offset: var(--nb-focus-ring-offset);
+}
+
+.focus-visible\:outline-\[var\(--nb-focus-ring\)\]:focus-visible {
+  outline: var(--nb-focus-ring);
+}
+
+/* Dialog backdrop */
+dialog[data-nb-dialog]::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* Checkbox: check icon shown over the checked background */
+input[data-nb-checkbox]:checked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}

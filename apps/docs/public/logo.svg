@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Neo Brutalism React">
+  <rect width="512" height="512" fill="#FFE066" stroke="#000" stroke-width="24"/>
+  <rect x="56" y="56" width="400" height="400" fill="#FF6B9D" stroke="#000" stroke-width="16"/>
+  <text x="256" y="290" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="132" font-weight="900" fill="#000">NB</text>
+</svg>

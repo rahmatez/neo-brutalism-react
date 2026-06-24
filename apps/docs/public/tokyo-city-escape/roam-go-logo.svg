@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Roam and Go">
+  <rect width="160" height="160" rx="12" fill="#C4B5FD" stroke="#000" stroke-width="8"/>
+  <text x="80" y="78" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="34" font-weight="900" fill="#000">ROAM</text>
+  <text x="80" y="118" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="34" font-weight="900" fill="#000">&amp; GO</text>
+</svg>

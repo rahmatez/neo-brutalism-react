@@ -1,0 +1,103 @@
+import { ChartAreaAxes } from './area-axes';
+import { ChartAreaDefault } from './area-default';
+import { ChartAreaIcons } from './area-icons';
+import { ChartAreaInteractive } from './area-interactive';
+import { ChartAreaLegend } from './area-legend';
+import { ChartAreaLinear } from './area-linear';
+import { ChartAreaStackedExpand } from './area-stacked-expand';
+import { ChartAreaStacked } from './area-stacked';
+import { ChartAreaStep } from './area-step';
+import { ChartBarActive } from './bar-active';
+import { ChartBarDefault } from './bar-default';
+import { ChartBarHorizontal } from './bar-horizontal';
+import { ChartBarInteractive } from './bar-interactive';
+import { ChartBarLabelCustom } from './bar-label-custom';
+import { ChartBarLabel } from './bar-label';
+import { ChartBarMixed } from './bar-mixed';
+import { ChartBarMultiple } from './bar-multiple';
+import { ChartBarNegative } from './bar-negative';
+import { ChartBarStacked } from './bar-stacked';
+import { ChartLineDefault } from './line-default';
+import { ChartLineDotsColors } from './line-dots-colors';
+import { ChartLineDotsCustom } from './line-dots-custom';
+import { ChartLineDots } from './line-dots';
+import { ChartLineInteractive } from './line-interactive';
+import { ChartLineLabelCustom } from './line-label-custom';
+import { ChartLineLabel } from './line-label';
+import { ChartLineLinear } from './line-linear';
+import { ChartLineMultiple } from './line-multiple';
+import { ChartLineStep } from './line-step';
+import { ChartPieDonutActive } from './pie-donut-active';
+import { ChartPieDonutText } from './pie-donut-text';
+import { ChartPieDonut } from './pie-donut';
+import { ChartPieLabelCustom } from './pie-label-custom';
+import { ChartPieLabelList } from './pie-label-list';
+import { ChartPieLabel } from './pie-label';
+import { ChartPieLegend } from './pie-legend';
+import { ChartPieSimple } from './pie-simple';
+import { ChartPieStacked } from './pie-stacked';
+import { ChartTooltipAdvanced } from './tooltip-advanced';
+import { ChartTooltipDefault } from './tooltip-default';
+import { ChartTooltipFormatter } from './tooltip-formatter';
+import { ChartTooltipIcons } from './tooltip-icons';
+import { ChartTooltipIndicatorLine } from './tooltip-indicator-line';
+import { ChartTooltipIndicatorNone } from './tooltip-indicator-none';
+import { ChartTooltipLabelCustom } from './tooltip-label-custom';
+import { ChartTooltipLabelFormatter } from './tooltip-label-formatter';
+import { ChartTooltipLabelNone } from './tooltip-label-none';
+import type { ComponentType } from 'react';
+
+export interface ChartExampleEntry {
+  name: string;
+  component: ComponentType;
+}
+
+export const CHART_EXAMPLES: ChartExampleEntry[] = [
+  { name: 'ChartAreaAxes', component: ChartAreaAxes },
+  { name: 'ChartAreaDefault', component: ChartAreaDefault },
+  { name: 'ChartAreaIcons', component: ChartAreaIcons },
+  { name: 'ChartAreaInteractive', component: ChartAreaInteractive },
+  { name: 'ChartAreaLegend', component: ChartAreaLegend },
+  { name: 'ChartAreaLinear', component: ChartAreaLinear },
+  { name: 'ChartAreaStackedExpand', component: ChartAreaStackedExpand },
+  { name: 'ChartAreaStacked', component: ChartAreaStacked },
+  { name: 'ChartAreaStep', component: ChartAreaStep },
+  { name: 'ChartBarActive', component: ChartBarActive },
+  { name: 'ChartBarDefault', component: ChartBarDefault },
+  { name: 'ChartBarHorizontal', component: ChartBarHorizontal },
+  { name: 'ChartBarInteractive', component: ChartBarInteractive },
+  { name: 'ChartBarLabelCustom', component: ChartBarLabelCustom },
+  { name: 'ChartBarLabel', component: ChartBarLabel },
+  { name: 'ChartBarMixed', component: ChartBarMixed },
+  { name: 'ChartBarMultiple', component: ChartBarMultiple },
+  { name: 'ChartBarNegative', component: ChartBarNegative },
+  { name: 'ChartBarStacked', component: ChartBarStacked },
+  { name: 'ChartLineDefault', component: ChartLineDefault },
+  { name: 'ChartLineDotsColors', component: ChartLineDotsColors },
+  { name: 'ChartLineDotsCustom', component: ChartLineDotsCustom },
+  { name: 'ChartLineDots', component: ChartLineDots },
+  { name: 'ChartLineInteractive', component: ChartLineInteractive },
+  { name: 'ChartLineLabelCustom', component: ChartLineLabelCustom },
+  { name: 'ChartLineLabel', component: ChartLineLabel },
+  { name: 'ChartLineLinear', component: ChartLineLinear },
+  { name: 'ChartLineMultiple', component: ChartLineMultiple },
+  { name: 'ChartLineStep', component: ChartLineStep },
+  { name: 'ChartPieDonutActive', component: ChartPieDonutActive },
+  { name: 'ChartPieDonutText', component: ChartPieDonutText },
+  { name: 'ChartPieDonut', component: ChartPieDonut },
+  { name: 'ChartPieLabelCustom', component: ChartPieLabelCustom },
+  { name: 'ChartPieLabelList', component: ChartPieLabelList },
+  { name: 'ChartPieLabel', component: ChartPieLabel },
+  { name: 'ChartPieLegend', component: ChartPieLegend },
+  { name: 'ChartPieSimple', component: ChartPieSimple },
+  { name: 'ChartPieStacked', component: ChartPieStacked },
+  { name: 'ChartTooltipAdvanced', component: ChartTooltipAdvanced },
+  { name: 'ChartTooltipDefault', component: ChartTooltipDefault },
+  { name: 'ChartTooltipFormatter', component: ChartTooltipFormatter },
+  { name: 'ChartTooltipIcons', component: ChartTooltipIcons },
+  { name: 'ChartTooltipIndicatorLine', component: ChartTooltipIndicatorLine },
+  { name: 'ChartTooltipIndicatorNone', component: ChartTooltipIndicatorNone },
+  { name: 'ChartTooltipLabelCustom', component: ChartTooltipLabelCustom },
+  { name: 'ChartTooltipLabelFormatter', component: ChartTooltipLabelFormatter },
+  { name: 'ChartTooltipLabelNone', component: ChartTooltipLabelNone },
+];

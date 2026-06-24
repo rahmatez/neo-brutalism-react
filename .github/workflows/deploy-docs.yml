@@ -1,0 +1,79 @@
+# Docs site backup → GitHub Pages (https://rahmatez.github.io/neo-brutalism-react/)
+#
+# Primary docs: https://neo-brutalism-react-docs.vercel.app/ (auto-deploy via Vercel on push to main)
+#
+# Run this workflow manually only when you need to refresh the GitHub Pages mirror.
+# ONE-TIME REPO SETUP (required for Pages deploy):
+#   Settings → Pages → Build and deployment → Source: GitHub Actions
+#   https://github.com/rahmatez/neo-brutalism-react/settings/pages
+
+name: Deploy Docs (GitHub Pages backup)
+
+on:
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint and test
+        run: |
+          pnpm lint
+          pnpm test
+
+      - name: Build docs for GitHub Pages
+        run: pnpm --filter @neobrutalism-ui/docs build
+        env:
+          GITHUB_PAGES: 'true'
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: apps/docs/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
